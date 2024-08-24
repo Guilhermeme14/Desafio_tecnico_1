@@ -2,7 +2,7 @@ import pandas as pd
 from openpyxl import load_workbook
 
 # Carregar os dados da planilha
-df = pd.read_excel("vendas.xlsx", sheet_name="Vendas")
+df = pd.read_excel("tarefa_1/vendas.xlsx", sheet_name="Vendas")
 
 
 # Função para calcular a comissão de cada venda
@@ -45,10 +45,12 @@ resultado = (
 )
 
 # Salvar o resultado em uma nova planilha
-resultado.to_excel("resultado_comissoes.xlsx", index=False, sheet_name="Comissão")
+resultado.to_excel(
+    "tarefa_1/resultado_comissoes.xlsx", index=False, sheet_name="Comissão"
+)
 
 # Carregar a planilha criada
-wb = load_workbook("resultado_comissoes.xlsx")
+wb = load_workbook("tarefa_1/resultado_comissoes.xlsx")
 ws = wb.active
 
 # Linha de total da comissão de marketing
@@ -60,7 +62,7 @@ real_format = "R$ #,##0.00"
 for col in ["B", "C", "D", "E"]:
     for cell in ws[col][1:]:  # type: ignore
         cell.number_format = real_format
-
-wb.save("resultado_comissoes.xlsx")
+# Salva a planilha
+wb.save("tarefa_1/resultado_comissoes.xlsx")
 
 print("Planilha criada")
