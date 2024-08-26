@@ -11,7 +11,7 @@ from src.calculo.comissao import (
 
 
 class TestComissaoFunctions(unittest.TestCase):
-
+    # Testa a função de carregamento de planilhas
     @patch("src.calculo.comissao.pd.read_excel")
     def test_carregar_dados_sucesso(self, mock_read_excel):
         # Simula o retorno de um DataFrame
@@ -23,6 +23,7 @@ class TestComissaoFunctions(unittest.TestCase):
         pd.testing.assert_frame_equal(resultado, mock_df)
 
     def test_calcular_comissao_venda_online(self):
+        # Testa a função de calcular a comissão online
         row = {"Valor da Venda": 2000, "Canal de Venda": "Online"}
         comissao, comissao_marketing, comissao_gerente, comissao_final = (
             calcular_comissao(row)
@@ -33,8 +34,9 @@ class TestComissaoFunctions(unittest.TestCase):
         self.assertEqual(comissao_gerente, 0.0)
         self.assertEqual(comissao_final, 160.0)
 
-    def test_calcular_comissao_venda_offline(self):
-        row = {"Valor da Venda": 1000, "Canal de Venda": "Offline"}
+    def test_calcular_comissao_venda_loja_fisica(self):
+        # Testa a função de calcular a comissão loja física
+        row = {"Valor da Venda": 1000, "Canal de Venda": "Loja física"}
         comissao, comissao_marketing, comissao_gerente, comissao_final = (
             calcular_comissao(row)
         )
@@ -45,11 +47,12 @@ class TestComissaoFunctions(unittest.TestCase):
         self.assertEqual(comissao_final, 100.0)
 
     def test_aplicar_calculo_comissoes(self):
+        # Testa a aplicação do calculo
         df = pd.DataFrame(
             {
                 "Nome do Vendedor": ["Vendedor 1", "Vendedor 2"],
                 "Valor da Venda": [2000, 1000],
-                "Canal de Venda": ["Online", "Offline"],
+                "Canal de Venda": ["Online", "Loja física"],
             }
         )
         resultado = aplicar_calculo_comissoes(df)
