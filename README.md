@@ -18,6 +18,7 @@ Para instalar as dependências, execute:
 ```bash
 pip install pandas openpyxl numpy
 ```
+
 ## Funcionalidades
 
 ### Cálculo de Comissões (`src/calculo/comissao.py`)
@@ -66,9 +67,11 @@ Para executar o projeto, siga estas etapas:
 
 1. Prepare seus arquivos de dados no diretório `/data/` (por exemplo, `vendas.xlsx`).
 2. Execute o script principal:
+
 ```bash
 python src/main.py
 ```
+
 Isso irá gerar os seguintes arquivos de saída dentro do diretório `data/`:
 
 `Comissões.xlsx`: Contém as comissões calculadas para cada vendedor.
